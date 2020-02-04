@@ -3,6 +3,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QPushButton
 from PyQt5.QtCore import pyqtSlot
 
+from specibuy_ui import MainWindow_Specibuy
+from tracker_ui import MainWindow_Tracker
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -164,8 +167,23 @@ class Ui_MainWindow(object):
         self.pushButton_specibuy.setText(_translate("MainWindow", "Specibuy"))
         self.header.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#121111;\">GRABBER<br/></span><span style=\" font-size:16pt; color:#121111;\">Making Online Shopping Effortless</span></p></body></html>"))
 
+
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
-        
+        self.pushButton_scraper.clicked.connect(self.scraperPopUp)
+        self.pushButton_tracker.clicked.connect(self.trackerPopUp)
+        self.pushButton_specibuy.clicked.connect(self.specibuyPopUp)
+
+    @QtCore.pyqtSlot()
+    def scraperPopUp(self):
+        pass
+    
+    def trackerPopUp(self):
+        self.win_tracker = MainWindow_Tracker()
+        self.win_tracker.show()
+
+    def specibuyPopUp(self):
+        self.win_specibuy = MainWindow_Specibuy()
+        self.win_specibuy.show()
