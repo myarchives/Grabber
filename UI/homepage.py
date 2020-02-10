@@ -6,6 +6,9 @@ from PyQt5.QtCore import pyqtSlot
 from specibuy_ui import MainWindow_Specibuy
 from tracker_ui import MainWindow_Tracker
 
+sys.path.insert(0, '/home/hakanohi/Projects/Grabber/Engine')
+from product_info import scraperEvent
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -178,8 +181,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     @QtCore.pyqtSlot()
     def scraperPopUp(self):
-        pass
-    
+        scraperEvent()
+
     def trackerPopUp(self):
         self.win_tracker = MainWindow_Tracker()
         self.win_tracker.show()
