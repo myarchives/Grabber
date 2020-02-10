@@ -1,20 +1,5 @@
-import gspread
-from oauth2client.service_account import ServiceAccountCredentials
-
-scope = ['https://spreadsheets.google.com/feeds',
-         'https://www.googleapis.com/auth/drive']
-
-creds = ServiceAccountCredentials.from_json_keyfile_name('secret.json', scope)
-
-client = gspread.authorize(creds)
-
-sheet = client.open('Grabber').sheet1
-
-stuffs = sheet.get_all_records()
-print(stuffs)
 from amazonbot import AmazonBot
 import gspread
-from notifier import SendMail
 from oauth2client.service_account import ServiceAccountCredentials
 
 total = []
@@ -54,8 +39,8 @@ class PriceUpdater(object):
         print(f'Total: {total}')
         return total
 
+
 def scraperEvent():
     updater = PriceUpdater('Grabber')
     total.append(updater.ProcessList())
     print(total[0])
-    SendMail(1, total)
