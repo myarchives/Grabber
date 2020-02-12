@@ -1,6 +1,9 @@
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+sys.path.insert(0, '/home/hakanohi/Projects/Grabber/Engine')
+from tracker import trackEvent
+
 
 class Ui_MainWindow_Tracker(object):
     def setupUi(self, MainWindow_Tracker):
@@ -116,3 +119,14 @@ class MainWindow_Tracker(QtWidgets.QMainWindow, Ui_MainWindow_Tracker):
     def __init__(self, parent=None):
         super(MainWindow_Tracker, self).__init__(parent)
         self.setupUi(self)
+        self.pushButton.clicked.connect(self.tracker_event)
+
+    @QtCore.pyqtSlot()
+    def tracker_event(self):
+        urlValue = self.lineEdit.text()
+        if(urlValue == ""):
+            QtWidgets.QMessageBox.critical(self, 'Grabber Alert', "URL cant be null !!", QtWidgets.QMessageBox.Ok, QtWidgets.QMessageBox.Ok)
+        else:
+            QtWidgets.QMessageBox.information(self, 'Grabber Alert', "You will be notified via email if the price changes!", QtWidgets.QMessageBox.Ok, QtWidgets.QMessageBox.Ok)
+            trackEvent(urlValue)
+            self.lineEdit.setText("")
