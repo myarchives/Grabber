@@ -3,6 +3,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QPushButton
 from PyQt5.QtCore import pyqtSlot
 
+sys.path.insert(0, '/home/hakanohi/Projects/Grabber/Engine')
+from specibuy import buyEvent
+
 
 class Ui_MainWindow_Specibuy(object):
     def setupUi(self, MainWindow_Specibuy):
@@ -117,3 +120,14 @@ class MainWindow_Specibuy(QtWidgets.QMainWindow, Ui_MainWindow_Specibuy):
     def __init__(self, parent=None):
         super(MainWindow_Specibuy, self).__init__(parent)
         self.setupUi(self)
+        self.pushButton.clicked.connect(self.specibuy_event)
+
+    @QtCore.pyqtSlot()
+    def specibuy_event(self):
+        productValue = self.lineEdit.text()
+        if (productValue == ""):
+            QtWidgets.QMessageBox.critical(self, 'Grabber Alert', "Product name cant be null !!", QtWidgets.QMessageBox.Ok, QtWidgets.QMessageBox.Ok)
+        else:
+            QtWidgets.QMessageBox.information(self, 'Grabber Alert', "You will be notified about the purchase of " + productValue + " via email!", QtWidgets.QMessageBox.Ok, QtWidgets.QMessageBox.Ok)
+            buyEvent(productValue)
+            self.lineEdit.setText("")
