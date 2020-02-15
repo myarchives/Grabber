@@ -83,5 +83,7 @@ def buyEvent(textboxValue):
     else:
         try:
             buyProduct(my_url, price)
+            print("Sending email.....")
+            SendMail(3, price)
         except:
             print('The product cannot be purchased onine!')

@@ -55,5 +55,7 @@ def trackEvent(textboxValue):
         info[2] = updated_price
         if(converted_updated_price < converted_original_price):
             print(info)
+            print('Price decreased! \n Sending email....')
+            SendMail(2, info)
         time.sleep(43200)
     driver.quit()

@@ -1,3 +1,4 @@
+from bs4 import BeautifulSoup
 
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
@@ -14,7 +15,7 @@ class AmazonBot(object):
         self.items = items
         self.profile = webdriver.FirefoxProfile()
         self.options = Options()
-        # self.options.headless = True
+        #self.options.headless = True
         self.driver = webdriver.Firefox(firefox_profile=self.profile,
                                         options=self.options)
 
@@ -40,7 +41,8 @@ class AmazonBot(object):
             search_button.click()
 
             time.sleep(1)
-            best_value = self.driver.find_element_by_xpath('//div[@data-index="2"]')
+            best_value = self.driver.find_element_by_xpath(
+                '/html/body/div[1]/div[1]/div[1]/div[2]/div/span[4]/div[1]/div[3]')
             asin = best_value.get_attribute('data-asin')
             product_url = 'https://www.amazon.ca/dp/' + asin
 
@@ -57,9 +59,10 @@ class AmazonBot(object):
             print()
 
             time.sleep(2)
+            
+        self.driver.quit()
         return prices, urls, names
 
-        self.driver.quit()
 
     def get_product_price(self, url):
         self.driver.get(url)
