@@ -18,7 +18,7 @@ These can be installed using `pip`:
 
 ## Screenshots
 
-![Registration] (/Samples/credentials.png)
+![Registration](/Samples/credentials.png)
 ![Homepage](/Samples/GrabberHomepage.png)
 ![Tracker](/Samples/Tracker.png)
 ![Specibuy](/Samples/Specibuy.png)
