@@ -11,6 +11,14 @@ The program depends on the following packages:
 * requests
 * gspread
 * oauth2client
+* PyQt5
 
-These can be installed using `pip`.
+These can be installed using `pip`:
 `pip install -r requirements.txt`
+
+## Screenshots
+
+![Registration] (/Samples/credentials.png)
+![Homepage](/Samples/GrabberHomepage.png)
+![Tracker](/Samples/Tracker.png)
+![Specibuy](/Samples/Specibuy.png)
